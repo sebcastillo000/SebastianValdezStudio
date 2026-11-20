@@ -1,0 +1,320 @@
+---
+import Seccion from "../ui/Seccion.astro";
+---
+
+<Seccion id="formulario-contacto" etiqueta="" titulo="">
+  <div class="contacto-contenido">
+    <div class="redes-contacto">
+      <h2 class="titulo-redes">También puedes encontrarme en:</h2>
+
+      <div class="lista-contactos">
+        <!-- Gmail -->
+        <a href="mailto:sebcastillo000@gmail.com" class="bloque-contacto">
+          <svg
+            class="icono-contacto"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="2" y="4" width="20" height="16" rx="1" />
+            <path d="m3 5 9 8 9-8" />
+          </svg>
+          <span>sebcastillo000@gmail.com</span>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/mrfrank_99/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bloque-contacto"
+          aria-label="Visitar Instagram mrfrank_99"
+        >
+          <svg
+            class="icono-contacto icono-instagram"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ffffff"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="#ffffff" stroke="none" />
+          </svg>
+          <span>mrfrank_99</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a
+          href="https://wa.me/593982116108"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bloque-contacto"
+          aria-label="Contactar por WhatsApp al 098 211 6108"
+        >
+          <svg
+            class="icono-contacto"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M20.5 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.7A8.5 8.5 0 1 1 20.5 11.5Z" />
+            <path d="M8.5 8.2c.3-.5.6-.5.9-.5.2 0 .4 0 .6.5l.8 1.8c.1.3.1.5-.1.7l-.6.7c.7 1.3 1.6 2.2 2.9 2.9l.7-.6c.2-.2.4-.2.7-.1l1.8.8c.4.2.5.4.5.6 0 .3-.1.7-.5.9-.5.4-1.1.6-1.8.5-1.1-.2-2.5-.9-3.8-2.2-1.3-1.3-2-2.7-2.2-3.8-.1-.7.1-1.3.5-1.8Z" />
+          </svg>
+          <span>+593 982 116 108</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="formulario-contenedor">
+      <h2 class="titulo-formulario">¡Hablemos!</h2>
+
+      <p class="texto-formulario">
+        Si tienes alguna consulta, un proyecto en mente o simplemente quieres saludar, estaré
+        encantado de leerte.
+      </p>
+
+      <form
+        class="formulario"
+        action="mailto:sebcastillo000@gmail.com"
+        method="POST"
+        enctype="text/plain"
+      >
+        <div class="campo-formulario">
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="Nombre" type="text" placeholder="Tu nombre" required />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="correo">Correo electrónico</label>
+          <input
+            id="correo"
+            name="Correo electrónico"
+            type="email"
+            placeholder="tu@email.com"
+            required
+          />
+        </div>
+
+        <div class="campo-formulario">
+          <label for="mensaje">Mensaje</label>
+          <textarea
+            id="mensaje"
+            name="Mensaje"
+            rows="5"
+            placeholder="Escribe tu mensaje..."
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit" class="boton-enviar">
+          Enviar mensaje
+        </button>
+      </form>
+    </div>
+  </div>
+</Seccion>
+
+<style>
+  .contacto-contenido {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0 40px;
+  }
+
+  .redes-contacto {
+    width: 100%;
+    margin-bottom: 80px;
+  }
+
+  .titulo-redes {
+    margin-bottom: 48px;
+    color: #171717;
+    font-family: Georgia, serif;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .lista-contactos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 55px;
+  }
+
+  .bloque-contacto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 635px;
+    min-height: 115px;
+    padding: 18px 28px;
+    border-radius: 999px;
+    background: #c51f43;
+    color: white;
+    text-decoration: none;
+    transition:
+      transform 250ms ease,
+      background 250ms ease;
+  }
+
+  .bloque-contacto:hover {
+    background: #a81736;
+    transform: translateY(-4px);
+  }
+
+  .bloque-contacto > span:last-child {
+    font-family: Arial, sans-serif;
+    font-size: clamp(19px, 3vw, 34px);
+    font-weight: 700;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+
+  .icono-contacto {
+    display: block;
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    color: white;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .icono-instagram {
+    stroke: #ffffff;
+  }
+
+  .formulario-contenedor {
+    width: 100%;
+    max-width: 512px;
+    margin: 0 auto;
+  }
+
+  .titulo-formulario {
+    margin-bottom: 24px;
+    color: #171717;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  .texto-formulario {
+    margin-bottom: 34px;
+    color: #171717;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .campo-formulario label {
+    color: #171717;
+    font-size: 15px;
+  }
+
+  .campo-formulario input,
+  .campo-formulario textarea {
+    width: 100%;
+    padding: 16px 14px;
+    border: 1px solid #d8c9c8;
+    border-radius: 20px;
+    background: white;
+    color: #171717;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    box-shadow: none;
+  }
+
+  .campo-formulario input:focus,
+  .campo-formulario textarea:focus {
+    border-color: #c51f43;
+  }
+
+  .campo-formulario textarea {
+    min-height: 135px;
+    resize: vertical;
+  }
+
+  .boton-enviar {
+    width: 100%;
+    padding: 17px;
+    border: none;
+    border-radius: 999px;
+    background: #c51f43;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background 250ms ease,
+      transform 250ms ease;
+  }
+
+  .boton-enviar:hover {
+    background: #a81736;
+    transform: translateY(-3px);
+  }
+
+  @media (max-width: 640px) {
+    .redes-contacto {
+      margin-bottom: 60px;
+    }
+
+    .titulo-redes {
+      margin-bottom: 30px;
+      font-size: 23px;
+    }
+
+    .lista-contactos {
+      gap: 28px;
+    }
+
+    .bloque-contacto {
+      min-height: 85px;
+      gap: 16px;
+      padding: 14px;
+    }
+
+    .icono-contacto {
+      width: 43px;
+      height: 43px;
+    }
+
+    .bloque-contacto > span:last-child {
+      font-size: clamp(16px, 4vw, 22px);
+    }
+
+    .titulo-formulario {
+      font-size: 29px;
+    }
+  }
+</style>

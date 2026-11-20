@@ -1,0 +1,41 @@
+---
+import Boton from "../ui/Boton.astro";
+
+const sebastianImg = "/images/SEBASTIANVALDEZ.jpg";
+---
+
+<section id="inicio" class="border-b-3 border-tinta bg-hueso-claro">
+  <div class="contenedor-medio py-12 md:py-16">
+    <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:items-center">
+      <div class="sm:order-1">
+        <p class="font-mono text-xs tracking-widest text-gris-600 uppercase">
+          Sebastian Valdez Studio
+        </p>
+
+        <h1
+          class="mt-4 text-5xl leading-none font-bold tracking-tight md:text-6xl sm:text-4xl"
+          data-revelar
+        >
+          Figuras que cobran vida
+        </h1>
+
+        <p class="mt-6 text-lg text-gris-800 sm:text-base">
+          Portafolio creativo de Sebastián Valdez: personajes, escenarios y procesos realizados a
+          mano con plastilina.
+        </p>
+
+        <div class="mt-8">
+          <Boton href="/proyectos">Ver proyectos →</Boton>
+        </div>
+      </div>
+
+      <div class="sm:order-2 revelar-imagen mx-auto w-full max-w-md sm:mt-4">
+        <img
+          src={sebastianImg}
+          alt="Personajes de plastilina creados por Sebastian Valdez"
+          class="border-3 border-suave rounded-lg sombra-suave h-72 md:h-96 w-full object-cover object-center"
+        />
+      </div>
+    </div>
+  </div>
+</section>

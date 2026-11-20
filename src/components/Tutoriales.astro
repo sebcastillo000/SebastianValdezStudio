@@ -1,0 +1,112 @@
+---
+---
+
+<section class="plastilina">
+  <video class="video-fondo" autoplay muted loop playsinline preload="auto">
+    <source src="/videos/SUPER%20TRAILER.mp4" type="video/mp4" />
+    Tu navegador no puede reproducir este video.
+  </video>
+
+  <div class="capa-oscura"></div>
+
+  <div class="contenido">
+    <p class="etiqueta">SEBASTIAN VALDEZ STUDIO</p>
+    <h2>PLASTILINA</h2>
+    <p class="frase">Ideas que cobran vida.</p>
+    <span class="detalle">PERSONAJES · CREATIVIDAD · ANIMACIÓN</span>
+  </div>
+</section>
+
+<style>
+  .plastilina {
+    position: relative;
+    width: 100%;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #292321;
+  }
+
+  .video-fondo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .capa-oscura {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.38);
+    z-index: 1;
+  }
+
+  .contenido {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+  }
+
+  .etiqueta {
+    margin-bottom: 18px;
+    font-family: monospace;
+    font-size: 12px;
+    letter-spacing: 4px;
+  }
+
+  .contenido h2 {
+    margin: 0;
+    color: #c51f43;
+    font-size: clamp(52px, 10vw, 120px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -4px;
+  }
+
+  .frase {
+    margin-top: 22px;
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 500;
+  }
+
+  .detalle {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+  }
+
+  @media (max-width: 600px) {
+    .plastilina {
+      min-height: 350px;
+    }
+
+    .contenido h2 {
+      letter-spacing: -2px;
+    }
+
+    .etiqueta {
+      font-size: 10px;
+      letter-spacing: 2px;
+    }
+
+    .detalle {
+      font-size: 9px;
+      letter-spacing: 1px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-fondo {
+      display: none;
+    }
+  }
+</style>

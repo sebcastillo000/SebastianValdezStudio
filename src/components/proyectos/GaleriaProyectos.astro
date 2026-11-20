@@ -1,0 +1,481 @@
+---
+import Seccion from "../ui/Seccion.astro";
+
+const proyectos = [
+  {
+    titulo: "Alien",
+    imagen: "/images/ALIEN.jpg",
+    alt: "Personaje de plastilina: Alien",
+    categoria: "personajes",
+  },
+  {
+    titulo: "Kane",
+    imagen: "/images/KANE.jpg",
+    alt: "Personaje de plastilina: Kane",
+    categoria: "personajes",
+  },
+  {
+    titulo: "Slasher",
+    imagen: "/images/SLASHER.jpg",
+    alt: "Personaje de plastilina: Slasher",
+    categoria: "escenarios",
+  },
+  {
+    titulo: "Undertaker",
+    imagen: "/images/UNDERTAKER.jpg",
+    alt: "Personaje de plastilina: Undertaker",
+    categoria: "personajes",
+  },
+  {
+    titulo: "Personajes",
+    imagen: "/images/personajes.jpg",
+    alt: "Conjunto de personajes de plastilina",
+    categoria: "personajes",
+  },
+  {
+    titulo: "Más proyectos",
+    imagen: "/images/detrasescenas.jpg",
+    alt: "Detrás de las escenas",
+    categoria: "escenarios",
+  },
+];
+---
+
+<Seccion id="galeria-proyectos" etiqueta="" titulo="Galería de proyectos">
+  <h2 class="text-3xl font-bold text-tinta mb-4">Mis Proyectos</h2>
+
+  <p class="text-gris-600 text-base mb-6">
+    Portafolio creativo de proyectos de personajes, escenarios y animaciones realizados con
+    plastilina y técnicas mixtas.
+  </p>
+
+  <!-- FILTROS -->
+  <div class="filtros-proyectos" role="group" aria-label="Filtros de proyectos">
+    <button type="button" data-filtro="todos" aria-pressed="true" class="btn-filtro seleccionado">
+      Todos
+    </button>
+    <button type="button" data-filtro="personajes" aria-pressed="false" class="btn-filtro">
+      Personajes
+    </button>
+    <button type="button" data-filtro="escenarios" aria-pressed="false" class="btn-filtro">
+      Escenarios
+    </button>
+  </div>
+
+  <!-- GALERÍA -->
+  <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 galeria-proyectos">
+    {proyectos.map((p, i) => (
+      <li data-categoria={p.categoria} class="tarjeta-proyecto">
+        <button
+          type="button"
+          class="bloque-imagen"
+          data-lightbox-abrir={i}
+          aria-label={`Ampliar imagen: ${p.titulo}`}
+        >
+          <span class="marco-dorado">
+            <img src={p.imagen} alt={p.alt} class="foto-proyecto" loading="lazy" />
+          </span>
+        </button>
+        <h3 class="nombre-proyecto">{p.titulo}</h3>
+      </li>
+    ))}
+  </ul>
+</Seccion>
+
+<!-- VISOR DE IMÁGENES -->
+<div
+  id="lightbox"
+  class="lightbox hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Galería de imágenes ampliadas"
+  aria-hidden="true"
+>
+  <button id="lightbox-cerrar" type="button" class="control-lightbox cerrar" aria-label="Cerrar">
+    &times;
+  </button>
+
+  <button
+    id="lightbox-anterior"
+    type="button"
+    class="control-lightbox anterior"
+    aria-label="Imagen anterior"
+  >
+    &#8249;
+  </button>
+
+  <figure class="contenido-lightbox">
+    <img id="lightbox-imagen" src="" alt="" />
+    <figcaption id="lightbox-titulo"></figcaption>
+    <p id="lightbox-contador"></p>
+  </figure>
+
+  <button
+    id="lightbox-siguiente"
+    type="button"
+    class="control-lightbox siguiente"
+    aria-label="Imagen siguiente"
+  >
+    &#8250;
+  </button>
+</div>
+
+<script>
+  // DATOS DEL VISOR
+  const imagenes = [
+    { titulo: "Alien", imagen: "/images/ALIEN.jpg", alt: "Personaje de plastilina: Alien" },
+    { titulo: "Kane", imagen: "/images/KANE.jpg", alt: "Personaje de plastilina: Kane" },
+    { titulo: "Slasher", imagen: "/images/SLASHER.jpg", alt: "Personaje de plastilina: Slasher" },
+    {
+      titulo: "Undertaker",
+      imagen: "/images/UNDERTAKER.jpg",
+      alt: "Personaje de plastilina: Undertaker",
+    },
+    {
+      titulo: "Personajes",
+      imagen: "/images/personajes.jpg",
+      alt: "Conjunto de personajes de plastilina",
+    },
+    { titulo: "Más proyectos", imagen: "/images/detrasescenas.jpg", alt: "Detrás de las escenas" },
+  ];
+
+  // FILTROS
+  const botonesFiltro = document.querySelectorAll<HTMLButtonElement>(".btn-filtro");
+  const tarjetas = document.querySelectorAll<HTMLElement>(".tarjeta-proyecto");
+
+  botonesFiltro.forEach((boton) => {
+    boton.addEventListener("click", () => {
+      const filtro = boton.dataset.filtro || "todos";
+
+      tarjetas.forEach((tarjeta) => {
+        const categoria = tarjeta.dataset.categoria;
+        const mostrar = filtro === "todos" || categoria === filtro;
+        tarjeta.classList.toggle("oculto", !mostrar);
+      });
+
+      botonesFiltro.forEach((otroBoton) => {
+        const activo = otroBoton.dataset.filtro === filtro;
+        otroBoton.classList.toggle("seleccionado", activo);
+        otroBoton.setAttribute("aria-pressed", String(activo));
+      });
+    });
+  });
+
+  // ELEMENTOS DEL VISOR
+  const lightbox = document.querySelector<HTMLDivElement>("#lightbox");
+  const imagenAmpliada = document.querySelector<HTMLImageElement>("#lightbox-imagen");
+  const tituloAmpliado = document.querySelector<HTMLElement>("#lightbox-titulo");
+  const contador = document.querySelector<HTMLElement>("#lightbox-contador");
+
+  const cerrar = document.querySelector<HTMLButtonElement>("#lightbox-cerrar");
+  const anterior = document.querySelector<HTMLButtonElement>("#lightbox-anterior");
+  const siguiente = document.querySelector<HTMLButtonElement>("#lightbox-siguiente");
+
+  let indiceActual = 0;
+  let ultimoElemento: HTMLElement | null = null;
+
+  // MOSTRAR LA IMAGEN SELECCIONADA
+  function mostrarImagen(indice: number) {
+    indiceActual = (indice + imagenes.length) % imagenes.length;
+    const proyecto = imagenes[indiceActual];
+
+    if (!imagenAmpliada || !tituloAmpliado || !contador) return;
+
+    imagenAmpliada.src = proyecto.imagen;
+    imagenAmpliada.alt = proyecto.alt;
+    tituloAmpliado.textContent = proyecto.titulo;
+    contador.textContent = `${indiceActual + 1} / ${imagenes.length}`;
+  }
+
+  // ABRIR AL HACER CLIC EN UNA FOTO
+  function abrirLightbox(indice: number, elemento: HTMLElement) {
+    if (!lightbox) return;
+
+    ultimoElemento = elemento;
+    mostrarImagen(indice);
+
+    lightbox.classList.remove("hidden");
+    lightbox.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+
+    cerrar?.focus();
+  }
+
+  // CERRAR EL VISOR
+  function cerrarLightbox() {
+    if (!lightbox) return;
+
+    lightbox.classList.add("hidden");
+    lightbox.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    ultimoElemento?.focus();
+  }
+
+  // ACTIVAR CLIC EN TODAS LAS FOTOS
+  document.querySelectorAll<HTMLButtonElement>("[data-lightbox-abrir]").forEach((boton) => {
+    boton.addEventListener("click", () => {
+      const indice = Number(boton.dataset.lightboxAbrir);
+      abrirLightbox(indice, boton);
+    });
+  });
+
+  // NAVEGACIÓN CON BOTONES
+  anterior?.addEventListener("click", () => mostrarImagen(indiceActual - 1));
+  siguiente?.addEventListener("click", () => mostrarImagen(indiceActual + 1));
+  cerrar?.addEventListener("click", cerrarLightbox);
+
+  // CERRAR AL HACER CLIC EN EL FONDO
+  lightbox?.addEventListener("click", (evento) => {
+    if (evento.target === lightbox) cerrarLightbox();
+  });
+
+  // NAVEGACIÓN CON TECLADO
+  document.addEventListener("keydown", (evento) => {
+    if (!lightbox || lightbox.classList.contains("hidden")) return;
+
+    if (evento.key === "Escape") cerrarLightbox();
+    if (evento.key === "ArrowLeft") mostrarImagen(indiceActual - 1);
+    if (evento.key === "ArrowRight") mostrarImagen(indiceActual + 1);
+  });
+</script>
+
+<style>
+  /* FILTROS */
+  .filtros-proyectos {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 32px 0;
+    pointer-events: auto;
+  }
+
+  .btn-filtro {
+    position: relative;
+    z-index: 6;
+    pointer-events: auto;
+    cursor: pointer;
+    padding: 12px 28px;
+    border: 2px solid #c51f43;
+    border-radius: 999px;
+    color: #c51f43;
+    background: transparent;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition:
+      transform 250ms ease,
+      background 250ms ease,
+      color 250ms ease;
+  }
+
+  .btn-filtro.seleccionado {
+    background: #c51f43;
+    color: #ffffff;
+  }
+
+  .btn-filtro:hover {
+    transform: translateY(-2px);
+  }
+
+  /* TARJETAS SIN SOMBRA NEGRA */
+  .tarjeta-proyecto {
+    position: relative;
+    z-index: 1;
+    background: #faf7ef;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+  }
+
+  .tarjeta-proyecto.oculto {
+    display: none !important;
+  }
+
+  .bloque-imagen {
+    display: block;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    cursor: zoom-in;
+    text-align: left;
+    pointer-events: auto;
+  }
+
+  .marco-dorado {
+    display: block;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    padding: 9px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: linear-gradient(
+      135deg,
+      #fff1a8 0%,
+      #d49a25 18%,
+      #fff0a0 35%,
+      #a96b08 52%,
+      #f8d66b 70%,
+      #bd8117 86%,
+      #fff0a0 100%
+    );
+    box-shadow:
+      0 3px 0 #80520d,
+      0 6px 12px rgba(0, 0, 0, 0.18),
+      inset 0 1px 3px rgba(255, 255, 255, 0.8);
+  }
+
+  .foto-proyecto {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #f8df91;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: transform 300ms ease;
+  }
+
+  .bloque-imagen:hover .foto-proyecto {
+    transform: scale(1.025);
+  }
+
+  .nombre-proyecto {
+    margin: 16px 0 0;
+    padding: 12px 10px;
+    color: #c51f43;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  /* VISOR */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+  }
+
+  .lightbox.hidden {
+    display: none !important;
+  }
+
+  .contenido-lightbox {
+    position: relative;
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 90vw;
+    max-height: 90vh;
+    margin: 0;
+  }
+
+  #lightbox-imagen {
+    display: block;
+    max-width: 100%;
+    max-height: 78vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+  }
+
+  #lightbox-titulo {
+    margin-top: 16px;
+    color: #ffffff;
+    font-family: monospace;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  #lightbox-contador {
+    margin-top: 6px;
+    color: #ffffff;
+    font-size: 13px;
+  }
+
+  .control-lightbox {
+    position: absolute;
+    z-index: 10001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    background: rgba(30, 25, 22, 0.85);
+    font-size: 32px;
+    cursor: pointer;
+  }
+
+  .control-lightbox:hover {
+    background: #c51f43;
+  }
+
+  .cerrar {
+    top: 20px;
+    right: 20px;
+    font-size: 36px;
+  }
+
+  .anterior {
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .siguiente {
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 640px) {
+    .control-lightbox {
+      width: 40px;
+      height: 40px;
+      font-size: 26px;
+    }
+
+    .anterior {
+      left: 8px;
+    }
+    .siguiente {
+      right: 8px;
+    }
+    .cerrar {
+      top: 12px;
+      right: 12px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .foto-proyecto,
+    .btn-filtro {
+      transition: none;
+    }
+  }
+</style>

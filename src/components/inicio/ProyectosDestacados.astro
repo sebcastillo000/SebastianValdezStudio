@@ -1,0 +1,45 @@
+---
+import Seccion from "../ui/Seccion.astro";
+---
+
+<Seccion id="proyectos-destacados" etiqueta="03" titulo="Proyectos destacados">
+  <h2 data-revelar>Proyectos destacados</h2>
+
+  <ul data-revelar-cascada class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <li class="border-3 border-tinta bg-hueso-claro p-6 shadow-duro rounded-8">
+      <img
+        src="/images/personajes.jpg"
+        alt="Personajes"
+        class="border-2 rounded-8 w-full h-48 object-cover mb-4"
+      />
+      <h3 class="font-mono text-acento text-lg uppercase">Personajes</h3>
+    </li>
+
+    <li class="border-3 border-tinta bg-hueso-claro p-6 shadow-duro rounded-8">
+      <img
+        src="/images/detrasescenas.jpg"
+        alt="Escenarios"
+        class="border-2 rounded-8 w-full h-48 object-cover mb-4"
+      />
+      <h3 class="font-mono text-acento text-lg uppercase">Escenarios</h3>
+    </li>
+
+    <li class="border-3 border-tinta bg-hueso-claro p-6 shadow-duro rounded-8">
+      <img
+        src="/images/SLASHER.jpg"
+        alt="Animaciones"
+        class="border-2 rounded-8 w-full h-48 object-cover mb-4"
+      />
+      <h3 class="font-mono text-acento text-lg uppercase">Animaciones</h3>
+    </li>
+
+    <li class="border-3 border-tinta bg-hueso-claro p-6 shadow-duro rounded-8">
+      <img
+        src="/images/ALIEN.jpg"
+        alt="Más proyectos"
+        class="border-2 rounded-8 w-full h-48 object-cover mb-4"
+      />
+      <h3 class="font-mono text-acento text-lg uppercase">Más proyectos</h3>
+    </li>
+  </ul>
+</Seccion>

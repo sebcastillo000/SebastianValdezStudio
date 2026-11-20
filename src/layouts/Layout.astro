@@ -1,0 +1,82 @@
+---
+/*
+  Layout base: todas las páginas lo usan.
+  Contiene el <head>, el encabezado, el pie de página y arranca las animaciones.
+  Cada página le pasa su título y descripción (importantes para Google).
+*/
+import "../styles/global.css";
+import Encabezado from "../components/Encabezado.astro";
+import PiePagina from "../components/PiePagina.astro";
+import { sitio } from "../datos/sitio";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = sitio.descripcion } = Astro.props;
+
+// Direcciones completas (con https://) para Open Graph. Astro.site viene de astro.config.mjs.
+const urlPagina = new URL(Astro.url.pathname, Astro.site).href;
+const imagenOG = new URL("/og.jpg", Astro.site).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Favicon (archivos en public/) -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content={sitio.nombre} />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph: tarjeta al compartir el enlace en WhatsApp, LinkedIn, Facebook o X -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={sitio.nombre} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={urlPagina} />
+    <meta property="og:image" content={imagenOG} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin />
+    <title>{title}</title>
+
+    <!-- Activa el estado inicial de las animaciones antes de pintar la página -->
+    <script is:inline>
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.documentElement.classList.add("animar");
+      }
+    </script>
+  </head>
+
+  <body class="flex min-h-dvh flex-col">
+    <a
+      href="#contenido"
+      class="sr-only bg-acento px-4 py-2 font-mono text-sm font-bold focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50"
+    >
+      Saltar al contenido
+    </a>
+
+    <Encabezado />
+
+    <!-- pt-16 = alto del encabezado fijo (h-16), así no tapa el contenido -->
+    <main id="contenido" class="flex-1 pt-16">
+      <slot />
+    </main>
+
+    <PiePagina />
+
+    <script>
+      import { iniciarAnimaciones } from "../scripts/animaciones";
+
+      iniciarAnimaciones();
+    </script>
+  </body>
+</html>

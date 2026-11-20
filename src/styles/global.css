@@ -1,0 +1,144 @@
+/*
+  Hoja de estilos global.
+  Tokens de diseño: colores, tipografías, bordes, sombras y contenedor.
+  Definidos según el brief (secciones 3, 4 y 5).
+*/
+
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------
+   1. Tipografías locales desde pack/fuentes/
+   --------------------------------------------------------------- */
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("/fonts/RobotoSlab-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("/fonts/RobotoSlab-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------------------------------------------------------------
+   2. Tokens de diseño (@theme)
+   --------------------------------------------------------------- */
+
+@theme {
+  --color-*: initial;
+
+  --color-fondo: #fff9f2; /* fondo principal */
+  --color-superficie: #ffffff; /* tarjetas y superficies */
+  --color-texto: #292329; /* texto principal */
+  --color-texto-suave: #625760; /* texto secundario suave */
+  --color-borde: #d8c9c8; /* bordes */
+  --color-marca: #c51f43; /* color de marca / acento */
+
+  /*
+    Alias usados por los componentes de la plantilla.
+    Apuntan a la misma paleta del brief, para que todo el sitio
+    use solo estos colores. Cada uno crea clases como bg-tinta,
+    text-tinta, border-tinta, etc.
+  */
+  --color-tinta: #292329; /* = texto */
+  --color-hueso: #fff9f2; /* = fondo */
+  --color-hueso-claro: #ffffff; /* = superficie */
+  --color-suave: #d8c9c8; /* = borde (clase border-suave) */
+  --color-acento: #c51f43; /* = marca */
+  --color-acento-oscuro: #a81736; /* hover de la marca */
+  --color-gris-200: #efe6e3; /* hover del botón secundario */
+  --color-gris-600: #625760; /* = texto suave */
+  --color-gris-800: #3f363d; /* párrafos largos */
+
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  --font-titulos: "Roboto Slab", ui-serif, Georgia, serif;
+  --font-serif: "Roboto Slab", ui-serif, Georgia, serif; /* clase font-serif */
+  --font-mono:
+    "Roboto", ui-sans-serif, system-ui, sans-serif; /* clase font-mono: etiquetas y menú */
+
+  --radius: 8px; /* esquinas */
+  --radius-8: 8px; /* clase rounded-8 */
+
+  --shadow-suave: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -1px rgb(0 0 0 / 0.06);
+  --shadow-duro: 4px 4px 0 var(--color-tinta); /* clase shadow-duro */
+  --shadow-duro-lg: 6px 6px 0 var(--color-tinta); /* clase shadow-duro-lg */
+}
+
+/* ---------------------------------------------------------------
+   3. Estilos base (etiquetas HTML sin clases)
+   --------------------------------------------------------------- */
+
+@layer base {
+  html {
+    @apply bg-fondo font-sans text-texto antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-titulos;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    @apply bg-marca text-superficie;
+  }
+
+  /* Foco visible para quien navega con teclado. No lo quites. */
+  :focus-visible {
+    outline: 3px solid var(--color-texto);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Estado inicial de las animaciones (ver src/scripts/animaciones.ts). */
+  html.animar [data-revelar],
+  html.animar [data-revelar-cascada] > * {
+    opacity: 0;
+  }
+}
+
+/* ---------------------------------------------------------------
+   4. Componentes base (bordes, contenedor)
+   --------------------------------------------------------------- */
+
+@layer components {
+  .borde-suave {
+    border: 1px solid var(--color-borde);
+  }
+
+  .sombra-suave {
+    box-shadow: var(--shadow-suave);
+  }
+
+  .contenedor-medio {
+    @apply mx-auto max-w-3xl px-4 sm:px-6 lg:px-8;
+  }
+}

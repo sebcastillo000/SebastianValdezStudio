@@ -1,0 +1,35 @@
+---
+/*
+  Contenedor para cada sección de la página.
+  Da a todas las secciones el mismo ancho, márgenes y estilo de título.
+
+  Uso:
+    <Seccion id="sobre-mi" etiqueta="02" titulo="Sobre mí">
+      ...contenido...
+    </Seccion>
+*/
+
+interface Props {
+  id?: string;
+  etiqueta?: string; // texto pequeño sobre el título (número o categoría)
+  titulo?: string;
+}
+
+const { id, etiqueta, titulo } = Astro.props;
+---
+
+<section id={id} class="border-b-3 border-tinta">
+  <div class="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-24">
+    {etiqueta && (
+      <p class="font-mono text-xs tracking-widest text-gris-600 uppercase">{etiqueta}</p>
+    )}
+    {titulo && (
+      <h2 class="mt-2 text-3xl font-bold tracking-tight md:text-5xl" data-revelar>
+        {titulo}
+      </h2>
+    )}
+    <div class:list={[titulo && "mt-10"]}>
+      <slot />
+    </div>
+  </div>
+</section>

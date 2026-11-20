@@ -1,0 +1,79 @@
+---
+const enlaces = [
+  { texto: "Inicio", href: "/" },
+  { texto: "Proyectos", href: "/proyectos" },
+  { texto: "Sobre mí", href: "/sobre-mi" },
+  { texto: "Contacto", href: "/contacto" },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-hueso-claro borde-suave sombra-suave">
+  <div class="contenedor-medio flex items-center justify-between h-16">
+    <a
+      href="/"
+      class="flex items-center gap-3 font-mono text-sm font-bold tracking-widest uppercase"
+    >
+      <img
+        src="/images/logosebas.png"
+        alt="Logo de Sebastián Valdez"
+        class="h-9 w-9 object-contain"
+      />
+      <span>Sebastian Valdez Studio</span>
+    </a>
+
+    <nav aria-label="Principal" class="hidden sm:block">
+      <ul class="flex gap-6 font-mono text-sm">
+        {enlaces.map((enlace) => (
+          <li>
+            <a
+              href={enlace.href}
+              class="underline-offset-4 hover:underline hover:text-marca hover:decoration-marca hover:decoration-4 transition-colors duration-200"
+            >
+              {enlace.texto}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <button
+      id="menu-boton"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      class="sm:hidden p-2 focus:outline-none"
+    >
+      <span class="sr-only">Menú</span>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </button>
+  </div>
+
+  <nav id="menu-movil" aria-label="Menú móvil" class="hidden sm:hidden bg-hueso-claro p-8">
+    <ul class="flex flex-col items-center gap-6 font-mono text-lg font-bold tracking-widest uppercase">
+      {enlaces.map((enlace) => (
+        <li>
+          <a href={enlace.href} class="hover:text-marca transition-colors duration-200">
+            {enlace.texto}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const boton = document.querySelector("#menu-boton");
+  const menu = document.querySelector("#menu-movil");
+
+  boton?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+    const abierto = !menu?.classList.contains("hidden");
+    boton.setAttribute("aria-expanded", String(abierto));
+  });
+</script>

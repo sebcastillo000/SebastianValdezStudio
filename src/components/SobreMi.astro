@@ -1,0 +1,70 @@
+---
+/*
+  Sobre mí: presentación personal y proceso creativo.
+*/
+import Seccion from "./ui/Seccion.astro";
+const sebastianImg = "/images/SEBASTIANVALDEZ.jpg";
+const detrasImg = "/images/detrasescenas.jpg";
+---
+
+<Seccion id="sobre-mi" etiqueta="03" titulo="Hola, soy Sebastián">
+  <div class="grid gap-10 md:grid-cols-2 md:items-start">
+    <div
+      class="mx-auto w-full max-w-sm overflow-hidden border-3 border-tinta shadow-duro"
+      data-revelar
+    >
+      <img
+        src={sebastianImg}
+        alt="Fotografía de Sebastián Valdez, creador interesado en la animación y la escultura de figuras de plastilina"
+        class="h-80 w-full object-cover object-center"
+      />
+      <p class="px-3 py-2 text-xs text-gris-600">Tu fotografía</p>
+    </div>
+
+    <div>
+      <h3 class="mb-3 font-serif text-lg text-tinta">Mi biografía</h3>
+      <p class="text-lg text-gris-800">
+        Soy Sebastián Valdez, creador de Sebastián Valdez Studio, un espacio donde exploro mi
+        creatividad a través del modelado de figuras y la animación con plastilina. Soy de Quito,
+        Ecuador, y desde siempre me ha interesado el mundo del cine, especialmente la manera en que
+        los personajes y escenarios pueden transmitir historias y emociones.
+      </p>
+      <p class="mt-4 text-lg text-gris-800">
+        Me gusta transformar ideas en figuras tridimensionales, experimentar con formas, texturas y
+        colores, y construir personajes que tengan su propia personalidad. Disfruto especialmente el
+        proceso manual de moldear la plastilina, cuidar los detalles y dar vida a cada creación.
+      </p>
+      <p class="mt-4 text-lg text-gris-800">
+        Mi interés por la animación también me ha llevado a explorar el stop motion, una técnica que
+        permite contar historias mediante pequeños movimientos capturados fotograma a fotograma.
+        Para mí, cada proyecto es una oportunidad de aprender, experimentar y desarrollar nuevas
+        habilidades.
+      </p>
+      <p class="mt-4 text-lg text-gris-800">
+        A través de este portafolio quiero compartir mis proyectos, mostrar cómo trabajo y dar a
+        conocer el proceso creativo que hay detrás de cada pieza.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-12 grid gap-10 md:grid-cols-2 md:items-center">
+    <div
+      class="mx-auto w-full max-w-sm overflow-hidden border-3 border-tinta shadow-duro"
+      data-revelar
+    >
+      <img
+        src={detrasImg}
+        alt="Proceso creativo y trabajo detrás de los personajes de plastilina"
+        class="h-80 w-full object-cover object-center"
+      />
+    </div>
+
+    <div>
+      <p class="font-mono text-xs tracking-widest text-gris-600 uppercase">Proceso creativo</p>
+      <p class="mt-4 text-lg text-gris-800">
+        Cada personaje nace de una idea y toma forma a mano, con paciencia y detalle. Detrás de cada
+        escena hay horas de modelado, color y composición para lograr el resultado final.
+      </p>
+    </div>
+  </div>
+</Seccion>

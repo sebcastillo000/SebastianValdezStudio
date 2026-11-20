@@ -1,0 +1,44 @@
+---
+/*
+  Portada: la primera sección que se ve. Contiene el único <h1> de la página.
+*/
+import { Image } from "astro:assets";
+import Boton from "./ui/Boton.astro";
+import personajes from "../../assets/personajes.jpg";
+import logo from "../../assets/logosebas.png";
+---
+
+<section id="inicio" class="border-b-3 border-tinta">
+  <div class="mx-auto max-w-5xl px-4 py-20 sm:px-6 md:py-32">
+    <div class="flex items-center gap-4" data-revelar>
+      <Image src={logo} alt="Logo de Sebastian Valdez Studio" class="h-12 w-auto border-0" />
+      <p class="font-mono text-xs tracking-widest text-gris-600 uppercase">
+        Sebastian Valdez Studio
+      </p>
+    </div>
+
+    <h1 class="mt-6 text-5xl leading-none font-bold tracking-tight md:text-8xl" data-revelar>
+      Personajes y mundos de <span class="bg-acento px-2">plastilina</span>
+    </h1>
+
+    <p class="mt-8 max-w-2xl text-lg text-gris-800 md:text-xl" data-revelar>
+      Portafolio creativo de Sebastián Valdez: personajes, escenarios y procesos de creación
+      realizados a mano con plastilina.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4" data-revelar>
+      <Boton href="#proyectos">Ver proyectos</Boton>
+      <Boton href="#contacto" variante="secundario">
+        Contacto
+      </Boton>
+    </div>
+
+    <div class="mt-12 overflow-hidden border-3 border-tinta shadow-duro" data-revelar>
+      <Image
+        src={personajes}
+        alt="Personajes de plastilina creados por Sebastian Valdez"
+        class="h-full w-full object-cover"
+      />
+    </div>
+  </div>
+</section>

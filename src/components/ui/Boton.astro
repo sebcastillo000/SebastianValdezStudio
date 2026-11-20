@@ -1,0 +1,47 @@
+---
+/*
+  Botón reutilizable.
+*/
+
+interface Props {
+  href?: string;
+  variante?: "primario" | "secundario";
+  type?: "button" | "submit";
+  class?: string;
+  style?: string;
+}
+
+const {
+  href,
+  variante = "primario",
+  type = "button",
+  class: clasesPersonalizadas = "",
+  style: estiloPersonalizado = "",
+} = Astro.props;
+
+const base =
+  "inline-flex items-center gap-2 rounded-full border-3 border-tinta px-6 py-3 font-mono text-sm font-bold tracking-wide uppercase shadow-duro transition hover:-translate-y-1 hover:shadow-duro-lg active:translate-y-1 active:shadow-none motion-reduce:transition-none";
+
+const variantes = {
+  primario: "bg-acento text-superficie hover:bg-acento-oscuro",
+  secundario: "bg-hueso-claro text-tinta hover:bg-gris-200",
+};
+---
+
+{href ? (
+  <a
+    href={href}
+    class:list={[base, variantes[variante], clasesPersonalizadas]}
+    style={estiloPersonalizado}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={[base, variantes[variante], clasesPersonalizadas]}
+    style={estiloPersonalizado}
+  >
+    <slot />
+  </button>
+)}

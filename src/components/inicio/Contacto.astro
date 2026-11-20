@@ -1,0 +1,114 @@
+---
+---
+
+<section id="contacto" class="seccion-opiniones">
+  <div class="contenedor">
+    <h2>Lo que dicen de mi trabajo</h2>
+
+    <div class="tarjetas">
+      <article class="tarjeta">
+        <div class="estrellas">★★★★★</div>
+        <p class="comentario">“Great work! I love these characters, especially the wrestlers.”</p>
+        <p class="autor">Machinmator</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="estrellas">★★★★★</div>
+        <p class="comentario">“Excelente trabajo, los escenarios se ven geniales.”</p>
+        <p class="autor">Carlos Bastidas</p>
+      </article>
+
+      <article class="tarjeta">
+        <div class="estrellas">★★★★★</div>
+        <p class="comentario">“Nice and iconic characters.”</p>
+        <p class="autor">Marcel Swan</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seccion-opiniones {
+    width: 100%;
+    background: #c51f43;
+    color: #ffffff;
+    padding: 70px 5%;
+    box-sizing: border-box;
+  }
+
+  .contenedor {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contenedor h2 {
+    color: #ffffff;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 800;
+    margin: 0 0 45px;
+    text-align: center;
+  }
+
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .tarjeta {
+    min-height: 360px;
+    padding: 32px 22px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    text-align: center;
+    background: #faf7ef;
+    color: #29231f;
+    border: 2px solid #29231f;
+    box-shadow: 5px 5px 0 #29231f;
+  }
+
+  .estrellas {
+    color: #d6a100;
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  .comentario {
+    color: #29231f;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .autor {
+    color: #29231f;
+    font-size: 14px;
+    font-weight: 800;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .seccion-opiniones {
+      padding: 50px 20px;
+    }
+
+    .contenedor h2 {
+      margin-bottom: 35px;
+    }
+
+    .tarjetas {
+      grid-template-columns: 1fr;
+      max-width: 340px;
+    }
+
+    .tarjeta {
+      min-height: 300px;
+    }
+  }
+</style>

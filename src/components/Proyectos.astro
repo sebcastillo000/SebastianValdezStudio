@@ -1,0 +1,93 @@
+---
+/*
+  Galería de proyectos de la página de inicio.
+  Animación Scroll Reveal con aparición progresiva.
+*/
+import Seccion from "./ui/Seccion.astro";
+
+const proyectos = [
+  { titulo: "Alien", img: "/images/ALIEN.jpg", alt: "Personaje de plastilina: Alien" },
+  { titulo: "Kane", img: "/images/KANE.jpg", alt: "Personaje de plastilina: Kane" },
+  { titulo: "Slasher", img: "/images/SLASHER.jpg", alt: "Personaje de plastilina: Slasher" },
+  {
+    titulo: "Undertaker",
+    img: "/images/UNDERTAKER.jpg",
+    alt: "Personaje de plastilina: Undertaker",
+  },
+  {
+    titulo: "Personajes",
+    img: "/images/personajes.jpg",
+    alt: "Conjunto de personajes de plastilina",
+  },
+];
+---
+
+<Seccion id="proyectos" titulo="Proyectos">
+  <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {proyectos.map((p, i) => (
+      <li
+        class="proyecto-reveal overflow-hidden border-3 border-tinta bg-hueso-claro shadow-duro"
+        style={`--retraso: ${i * 130}ms`}
+      >
+        <img
+          src={p.img}
+          alt={p.alt}
+          class="h-64 w-full object-cover transition-transform duration-300 ease-in-out hover:scale-[1.02]"
+          loading="lazy"
+        />
+        <p class="px-4 py-3 font-mono text-sm font-bold tracking-wide uppercase">{p.titulo}</p>
+      </li>
+    ))}
+  </ul>
+</Seccion>
+
+<script>
+  const proyectos = document.querySelectorAll(".proyecto-reveal");
+
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("proyecto-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px",
+      },
+    );
+
+    proyectos.forEach((proyecto) => observer.observe(proyecto));
+  } else {
+    proyectos.forEach((proyecto) => {
+      proyecto.classList.add("proyecto-visible");
+    });
+  }
+</script>
+
+<style>
+  .proyecto-reveal {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+      opacity 0.8s ease,
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--retraso, 0ms);
+  }
+
+  .proyecto-reveal.proyecto-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .proyecto-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

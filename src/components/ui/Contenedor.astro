@@ -1,0 +1,15 @@
+---
+/*
+  Contenedor reutilizable con ancho medio y márgenes horizontales automáticos.
+  Se usa para centrar contenido con un límite de ancho consistente.
+*/
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+---
+
+<div class="contenedor-medio {className}">
+  <slot />
+</div>

@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "saoudrizwan.claude-dev",
+    "astro-build.astro-vscode",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode"
+  ],
+  "unwantedRecommendations": []
+}

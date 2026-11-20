@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Seccion from "../components/ui/Seccion.astro";
+import ProcesoCreativo from "../components/sobre-mi/ProcesoCreativo.astro";
+import MaterialesTecnicas from "../components/sobre-mi/MaterialesTecnicas.astro";
+import { Image } from "astro:assets";
+import sebastian from "../assets/SEBASTIANVALDEZ.jpg";
+---
+
+<Layout title="Sobre mí" description="Presentación personal y proceso creativo de Sebastián Valdez">
+  <Seccion id="sobre-mi" titulo="Sobre mí">
+    <div class="grid gap-10 md:grid-cols-2 md:items-center">
+      <!-- FOTOGRAFÍA A LA IZQUIERDA -->
+      <div class="overflow-hidden border-3 border-tinta shadow-duro" data-revelar>
+        <Image
+          src={sebastian}
+          alt="Fotografía de Sebastián Valdez"
+          class="h-full min-h-72 w-full object-cover"
+        />
+      </div>
+
+      <!-- BIOGRAFÍA A LA DERECHA -->
+      <div>
+        <h2 class="text-3xl font-serif text-tinta mb-4">Hola, soy Sebastián</h2>
+
+        <p class="text-lg text-gris-800">
+          Soy Sebastián Valdez, ecuatoriano de Quito, nacido el 1 de enero de 1999. Me considero una
+          persona creativa, curiosa y apasionada por las distintas formas de expresión artística. Me
+          gusta explorar nuevas ideas y transformarlas en personajes, imágenes e historias.
+        </p>
+
+        <p class="mt-4 text-lg text-gris-800">
+          Me apasiona la animación, especialmente la creación de personajes y el desarrollo de
+          historias visuales. Me interesa cómo los movimientos, las expresiones y los pequeños
+          detalles pueden transmitir emociones y dar personalidad a cada creación.
+        </p>
+
+        <p class="mt-4 text-lg text-gris-800">
+          También disfruto de la escultura de figuras en plastilina. A través de este material puedo
+          experimentar con formas, volúmenes y texturas, dando vida a personajes que nacen de mi
+          imaginación.
+        </p>
+
+        <p class="mt-4 text-lg text-gris-800">
+          El cine es otra de mis grandes fuentes de inspiración. Me gusta descubrir cómo se
+          construyen sus historias, personajes y escenarios, y cómo la fotografía, la iluminación y
+          el sonido ayudan a crear experiencias visuales.
+        </p>
+
+        <p class="mt-4 text-lg text-gris-800">
+          Mi objetivo es continuar aprendiendo, experimentar con nuevas técnicas y desarrollar
+          proyectos que integren la escultura, la animación y el lenguaje cinematográfico para
+          contar historias originales.
+        </p>
+      </div>
+    </div>
+  </Seccion>
+
+  <ProcesoCreativo />
+  <MaterialesTecnicas />
+</Layout>

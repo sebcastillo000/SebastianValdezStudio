@@ -1,0 +1,86 @@
+---
+import Seccion from "../ui/Seccion.astro";
+---
+
+<Seccion id="proceso-creativo" titulo="Mi proceso creativo">
+  <div class="grid gap-4 md:grid-cols-3">
+    <!-- CREATIVIDAD -->
+    <div>
+      <div class="rounded-8 border border-tinta bg-hueso-claro p-6 text-center mb-4">
+        <svg
+          class="w-16 h-16 mx-auto mb-2"
+          style="color: #b51232"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="50" cy="50" r="21" />
+          <g stroke="currentColor" stroke-width="7" stroke-linecap="round">
+            <path d="M50 8 V20 M50 80 V92 M8 50 H20 M80 50 H92" />
+            <path d="M20 20 L29 29 M71 71 L80 80 M80 20 L71 29 M29 71 L20 80" />
+          </g>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-serif text-tinta">Creatividad</h3>
+      <p class="text-gris-600 text-base mt-2">Cada proyecto empieza con una idea.</p>
+    </div>
+
+    <!-- PROCESO -->
+    <div>
+      <div class="rounded-8 border border-tinta bg-hueso-claro p-6 text-center mb-4">
+        <svg
+          class="w-16 h-16 mx-auto mb-2"
+          style="color: #b51232"
+          viewBox="0 0 120 100"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="
+            M37 5 L43 5 L47 12 L54 15 L62 12 L68 18 L65 26
+            L68 34 L76 38 L76 46 L68 50 L65 58 L68 66
+            L62 72 L54 69 L47 72 L43 80 L35 80 L31 72
+            L23 69 L15 72 L9 66 L12 58 L9 50 L1 46
+            L1 38 L9 34 L12 26 L9 18 L15 12 L23 15
+            L31 12 Z
+            M39 25 A17 17 0 1 0 39 59 A17 17 0 1 0 39 25 Z
+          "
+          />
+          <path
+            fill-rule="evenodd"
+            d="
+            M91 19 L96 19 L99 25 L105 27 L111 25
+            L116 30 L114 36 L116 42 L120 45 L120 51
+            L114 54 L112 60 L114 66 L109 71 L103 69
+            L97 72 L94 78 L88 78 L85 72 L79 69
+            L73 71 L68 66 L70 60 L68 54 L62 51
+            L62 45 L68 42 L70 36 L68 30 L73 25
+            L79 27 L85 25 Z
+            M91 36 A9 9 0 1 0 91 54 A9 9 0 1 0 91 36 Z
+          "
+          />
+        </svg>
+      </div>
+      <h3 class="text-2xl font-serif text-tinta">Proceso</h3>
+      <p class="text-gris-600 text-base mt-2">Moldeo, esculpo, pinto y ajusto.</p>
+    </div>
+
+    <!-- RESULTADO -->
+    <div>
+      <div class="rounded-8 border border-tinta bg-hueso-claro p-6 text-center mb-4">
+        <svg
+          class="w-16 h-16 mx-auto mb-2"
+          style="color: #b51232"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M50 5 L62 35 L95 37 L70 59 L78 92 L50 74 L22 92 L30 59 L5 37 L38 35 Z" />
+        </svg>
+      </div>
+      <h3 class="text-2xl font-serif text-tinta">Resultado</h3>
+      <p class="text-gris-600 text-base mt-2">Personajes, escenarios y animaciones únicas.</p>
+    </div>
+  </div>
+</Seccion>

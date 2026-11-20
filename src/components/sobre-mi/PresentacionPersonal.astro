@@ -1,0 +1,36 @@
+---
+import { Image } from "astro:assets";
+import Seccion from "../ui/Seccion.astro";
+import sebastian from "../assets/SEBASTIANVALDEZ.jpg";
+---
+
+<Seccion id="presentacion-personal" etiqueta="09" titulo="Presentación personal">
+  <div class="grid gap-6 md:grid-cols-2">
+    <div>
+      <Image
+        src={sebastian}
+        alt="Fotografía personal de Sebastián Valdez"
+        class="rounded-8 border-2 border-tinta w-full h-64 object-cover mb-4"
+      />
+      <h2 class="text-3xl font-serif text-tinta mb-4">Hola, soy Sebastián</h2>
+      <p class="text-gris-600 text-base">
+        Soy Sebastián Valdez, ecuatoriano de Quito, nacido el 1 de enero de 1999. Me apasiona la
+        animación y la escultura de figuras en plastilina, porque me permiten crear personajes y dar
+        vida a nuevas historias.
+      </p>
+      <p class="mt-4 text-gris-600 text-base">
+        Me gusta el cine y descubrir cómo se construyen sus historias, personajes y escenarios.
+        Quiero seguir explorando mi creatividad y desarrollar proyectos que mezclen la escultura, la
+        animación y mi imaginación.
+      </p>
+    </div>
+    <div class="prose">
+      <p class="text-gris-600 text-base">
+        Detaller de la presentación personal que explica la trayectoria, inspiraciones y objetivos
+        creativos de Sebastián Valdez. El contenido está formateado con tipos de letra adecuadas,
+        con Roboto Slab para los títulos y Roboto para el texto corporal, manteniendo la coherencia
+        visual con el resto del sitio.
+      </p>
+    </div>
+  </div>
+</Seccion>
