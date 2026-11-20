@@ -5,9 +5,8 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  // Dirección pública del sitio (la usa Open Graph).
-  // PROVISIONAL: cámbiala por la dirección .pages.dev que te dé Cloudflare en la clase 2.
-  site: "https://mi-sitio.pages.dev",
+  // Dirección pública del sitio publicada en Cloudflare (la usa Open Graph).
+  site: "https://sebastianvaldezstudio.sebcastillo000.workers.dev",
   vite: {
     plugins: [tailwindcss()],
   },
